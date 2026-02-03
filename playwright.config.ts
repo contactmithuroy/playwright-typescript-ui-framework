@@ -29,6 +29,8 @@ export default defineConfig({
     baseURL: 'http://zero.webappsecurity.com',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    navigationTimeout: 50000,
+    screenshot: 'only-on-failure',
   },
 
   /* Configure projects for major browsers */
