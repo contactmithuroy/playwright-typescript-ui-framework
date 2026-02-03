@@ -1,0 +1,23 @@
+{
+  "name": "playwright-typescript-ui-framework",
+  "version": "1.0.0",
+  "description": "End-to-end UI automation framework built with Playwright and TypeScript for the Guru99 demo banking application. Includes scalable test structure, cross-browser testing",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/contactmithuroy/playwright-typescript-ui-framework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/contactmithuroy/playwright-typescript-ui-framework/issues"
+  },
+  "homepage": "https://github.com/contactmithuroy/playwright-typescript-ui-framework#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.1",
+    "@types/node": "^25.2.0"
+  }
+}
