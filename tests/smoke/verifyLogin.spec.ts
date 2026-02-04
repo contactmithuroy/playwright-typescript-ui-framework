@@ -3,36 +3,9 @@ import { LoginPage } from '../../pages/Common/LoginPage';
 import { TestFactory } from '../factories/testFactory';
 import { LoginCredentials } from '../../data-models/interfaces';
 
-
-test.describe('Login Functionality', () => {
-  /**
-   * Test 1: Valid Login Test (using fixture for auto-login)
-   */
-  test('should login successfully with valid credentials', async ({
-    authenticatedPage,
-    testContext,
-  }) => {
-    // The authenticatedPage fixture already logs us in
-    expect(testContext.authenticated).toBe(true);
-    expect(authenticatedPage.url()).toContain('account-summary.html');
-  });
-
-  /**
-   * Test 2: Manual Login Test (without fixture)
-   */
-  test('should login manually without fixture', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-
-    await loginPage.navigateToLoginPage();
-    await loginPage.login('username', 'password');
-    await loginPage.submitLoginForm();
-
-    const isLoggedIn = await loginPage.verifyLoginSuccess();
-    expect(isLoggedIn).toBe(true);
-
-    await loginPage.logout();
-  });
-});
+// NOTE: This file contains only the Data-Driven login suites.
+// Other tests that require an authenticated session should use the
+// `authenticatedPage` fixture (see `tests/fixtures/customFixtures.ts`).
 
 /**
  * Data-Driven Login Tests - Using CSV and Test Factory
@@ -62,7 +35,7 @@ TestFactory.createDataDrivenSuite<LoginCredentials>(
   },
   {
     titleGenerator: (data, index) =>
-      `Login test ${index + 1}: User "${data.Login}"`,
+      `Login test ${index + 1}: User "${data.Login}" - Password "${data.Password}"`,
     useAuthentication: false, // We're testing login itself
     beforeEachTest: async (data) => {
       console.log(`Starting login test for user: ${data.Login}`);
@@ -94,7 +67,7 @@ TestFactory.createDataDrivenSuite<LoginCredentials>(
   },
   {
     titleGenerator: (data, index) =>
-      `Invalid login test ${index + 1}: User "${data.Login}"`,
+      `Invalid login test ${index + 1}: User "${data.Login}" - Password "${data.Password}"`,
     filter: (data) => data.Test?.toLowerCase() === 'false', // Only false tests
     useAuthentication: false,
   }
