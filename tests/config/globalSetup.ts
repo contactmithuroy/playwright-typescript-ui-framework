@@ -96,6 +96,7 @@ async function createAuthState(config: FullConfig) {
   await page.getByLabel('Login').fill(username);
   await page.getByLabel('Password').fill(password);
   await page.locator('[name="submit"]').click();
+   await page.goto('/bank/account-summary.html');
   await page.waitForURL(/.*account-summary.html/);
 
   // Save authenticated state

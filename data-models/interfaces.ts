@@ -4,7 +4,7 @@
 
 export interface TestDataRow {
   Test: string;
-  [key: string]: string;
+  [key: string]: string | undefined;
 }
 
 export interface LoginCredentials extends TestDataRow {
@@ -13,6 +13,10 @@ export interface LoginCredentials extends TestDataRow {
 }
 
 export interface TransferData extends TestDataRow {
+  TestId: string;
+  TestTitle: string;
+  MainMenu: string;
+  SubMenu?: string;
   FromAccount: string;
   ToAccount: string;
   Amount: string;

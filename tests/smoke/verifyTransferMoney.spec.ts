@@ -18,8 +18,12 @@ TestFactory.createDataDrivenSuite<TransferData>(
     const isValidAmount = transferPage.validateAmount(data.Amount);
     (this.expect as any)(isValidAmount).toBe(true);
 
-    // Navigate to transfer page
-    await navigationPage.navigateToTransferFunds();
+    // Navigate to transfer page - use MainMenu and optional SubMenu from CSV
+    if (data.SubMenu && data.SubMenu.trim()) {
+      await navigationPage.navigationMenu(data.MainMenu, data.SubMenu);
+    } else {
+      await navigationPage.navigationMenu(data.MainMenu);
+    }
 
     // Fill transfer details
     await transferPage.fillTransferDetails(
@@ -41,19 +45,8 @@ TestFactory.createDataDrivenSuite<TransferData>(
   },
   {
     titleGenerator: (data, index) =>
-      `Transfer ${data.Amount} from ${data.FromAccount.split('(')[0].trim()} to ${data.ToAccount.split('(')[0].trim()}`,
-    useAuthentication: true, // Use the authenticated fixture for auto-login
-    beforeEachTest: async (data) => {
-      console.log(`\n=== Starting Transfer Test ===`);
-      console.log(`Amount: $${data.Amount}`);
-      console.log(`From: ${data.FromAccount}`);
-      console.log(`To: ${data.ToAccount}`);
-      console.log(`Description: ${data.Description}`);
-    },
-    afterEachTest: async (data) => {
-      console.log(`Transfer test completed for $${data.Amount}`);
-      console.log(`=== End Transfer Test ===\n`);
-    },
+      `${data.TestId}: ${data.TestTitle}`,
+    useAuthentication: true,
   }
 );
 

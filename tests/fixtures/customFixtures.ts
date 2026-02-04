@@ -54,8 +54,31 @@ export const test = base.extend<CustomFixtures>({
     console.log(`[${testInfo.title}] Setting up authentication...`);
 
     try {
-      // Navigate and login
-      await page.goto(path);
+      // Navigate to login page with retry logic for network errors
+      let navigationSuccess = false;
+      let lastError: any;
+      
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+          await page.goto(path, {
+            waitUntil: 'domcontentloaded',
+            timeout: 30000,
+          });
+          navigationSuccess = true;
+          break;
+        } catch (error: any) {
+          lastError = error;
+          if (attempt < 3 && (error.message.includes('ERR_ABORTED') || error.message.includes('net::'))) {
+            console.log(`[${testInfo.title}] Navigation attempt ${attempt} failed, retrying...`);
+            await page.waitForTimeout(1000);
+          } else {
+            throw error;
+          }
+        }
+      }
+      
+      if (!navigationSuccess) throw lastError;
+
       await loginPage.login(username, password);
       await loginPage.submitLoginForm();
 
