@@ -56,6 +56,11 @@ export class TestFactory {
           const activePage = useAuthentication ? authenticatedPage : page;
 
           try {
+            // If not using authentication, clear any previous session
+            if (!useAuthentication) {
+              await activePage.context().clearCookies();
+            }
+
             // Run before hook if provided
             if (beforeEachTest) {
               await beforeEachTest(data);
@@ -146,6 +151,12 @@ export class TestFactory {
               `Test ${index + 1} - ${groupName}`,
               async ({ page, authenticatedPage }) => {
                 const activePage = useAuthentication ? authenticatedPage : page;
+
+                // If not using authentication, clear any previous session
+                if (!useAuthentication) {
+                  await activePage.context().clearCookies();
+                }
+
                 await testFn.call({ page: activePage, expect }, data, index);
               }
             );
