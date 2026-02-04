@@ -1,9 +1,7 @@
 import { Page, Locator } from '@playwright/test';
 import { BasePage } from '../Common/basePage';
 
-/**
- * Enhanced Navigation Page Object
- */
+
 export class NavigationPage extends BasePage {
   constructor(page: Page) {
     super(page);
@@ -54,39 +52,6 @@ export class NavigationPage extends BasePage {
     await this.navigationMenu(mainMenu, subMenus.join(' > '));
   }
 
-  /**
-   * Get all available menu items
-   */
-  async getAvailableMenus(): Promise<string[]> {
-    try {
-      const menuLocators = await this.page.locator('#navbar li a').all();
-      const menuTexts: string[] = [];
-
-      for (const locator of menuLocators) {
-        const text = await locator.textContent();
-        if (text) {
-          menuTexts.push(text.trim());
-        }
-      }
-
-      return menuTexts;
-    } catch (error) {
-      this.logError('Failed to get available menus', error);
-      return [];
-    }
-  }
-
-  /**
-   * Check if menu item exists
-   */
-  async menuExists(menuName: string): Promise<boolean> {
-    try {
-      const menuLocator = this.page.getByText(menuName, { exact: false });
-      return await this.elementExists(menuLocator);
-    } catch {
-      return false;
-    }
-  }
 
   /**
    * Navigate to specific pages directly
