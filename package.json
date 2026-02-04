@@ -52,7 +52,7 @@
     "enterprise",
     "framework"
   ],
-  "author": "Your Name",
+  "author": "Mithu Roy",
   "license": "MIT",
   "devDependencies": {
     "@playwright/test": "^1.41.0",

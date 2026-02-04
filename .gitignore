@@ -4,5 +4,10 @@ node_modules/
 /test-results/
 /playwright-report/
 /blob-report/
+/allure-results/
+/allTestResult/
 /playwright/.cache/
 /playwright/.auth/
+# Env files
+#.env*
+
