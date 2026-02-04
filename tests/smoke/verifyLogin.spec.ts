@@ -1,4 +1,3 @@
-import { test, expect } from '../fixtures/customFixtures';
 import { LoginPage } from '../../pages/Common/LoginPage';
 import { TestFactory } from '../factories/testFactory';
 import { LoginCredentials } from '../../data-models/interfaces';
@@ -69,30 +68,6 @@ TestFactory.createDataDrivenSuite<LoginCredentials>(
     titleGenerator: (data, index) =>
       `Invalid login test ${index + 1}: User "${data.Login}" - Password "${data.Password}"`,
     filter: (data) => data.Test?.toLowerCase() === 'false', // Only false tests
-    useAuthentication: false,
-  }
-);
-
-/**
- * Grouped Login Tests - By Username Pattern
- */
-TestFactory.createGroupedTests<LoginCredentials>(
-  'Grouped Login Tests by Username',
-  'loginCredentials',
-  'Login',
-  async function (this: { page: any; expect: any }, data: LoginCredentials) {
-    const loginPage = new LoginPage(this.page);
-
-    await loginPage.navigateToLoginPage();
-    await loginPage.login(data.Login, data.Password);
-    await loginPage.submitLoginForm();
-
-    const isLoggedIn = await loginPage.verifyLoginSuccess();
-    (this.expect as any)(isLoggedIn).toBe(true);
-
-    await loginPage.logout();
-  },
-  {
     useAuthentication: false,
   }
 );

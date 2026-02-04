@@ -3,7 +3,7 @@ import path from 'path';
 import { TestDataRow } from '../data-models/interfaces';
 
 /**
- *  CSV Reader with validation and error handling
+ *  CSV Reader with validation 
  */
 export class CsvReader {
   private static cache: Map<string, TestDataRow[]> = new Map();

@@ -3,7 +3,7 @@ import { TestDataRow } from '../data-models/interfaces';
 import { CsvReader } from '../utils/csvReader';
 
 /**
- * Enhanced DataStore with lazy loading and better organization
+ *  DataStore with lazy loading and better organization
  */
 export class DataStore {
   private static readonly DATA_DIR = path.resolve(__dirname, '../test-data');

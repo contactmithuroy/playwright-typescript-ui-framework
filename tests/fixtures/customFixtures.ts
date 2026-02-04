@@ -59,8 +59,9 @@ export const test = base.extend<CustomFixtures>({
       await loginPage.login(username, password);
       await loginPage.submitLoginForm();
 
-      // Verify successful login
+      // Verify successful login and wait for dashboard
       await page.waitForURL(/.*account-summary.html/, { timeout: 10000 });
+      await page.waitForLoadState('networkidle');
       
       // Update test context
       testContext.authenticated = true;

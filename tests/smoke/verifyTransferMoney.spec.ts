@@ -1,10 +1,12 @@
-import { test, expect } from '../fixtures/customFixtures';
+import { test } from '../fixtures/customFixtures';
 import { NavigationPage } from '../../pages/MainPages/NavigationPage';
 import { MoneyTransferPage } from '../../pages/MainPages/MoneyTransferPage';
 import { TestFactory } from '../factories/testFactory';
 import { TransferData } from '../../data-models/interfaces';
 
-
+/**
+ * CSV-Driven Money Transfer Tests - Using Test Factory
+ */
 TestFactory.createDataDrivenSuite<TransferData>(
   'CSV-Driven Money Transfer Tests',
   'MakeATransferData',
@@ -40,7 +42,7 @@ TestFactory.createDataDrivenSuite<TransferData>(
   {
     titleGenerator: (data, index) =>
       `Transfer ${data.Amount} from ${data.FromAccount.split('(')[0].trim()} to ${data.ToAccount.split('(')[0].trim()}`,
-    useAuthentication: true, // Use the authenticated fixture
+    useAuthentication: true, // Use the authenticated fixture for auto-login
     beforeEachTest: async (data) => {
       console.log(`\n=== Starting Transfer Test ===`);
       console.log(`Amount: $${data.Amount}`);
