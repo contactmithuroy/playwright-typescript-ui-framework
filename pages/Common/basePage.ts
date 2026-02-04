@@ -1,8 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 
-/**
- * Enhanced Base Page with utilities and error handling
- */
+
 export class BasePage {
   constructor(protected page: Page) {}
 
