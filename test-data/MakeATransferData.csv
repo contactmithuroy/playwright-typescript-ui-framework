@@ -1,0 +1,4 @@
+Test,FromAccount,ToAccount,Amount,Description
+true,Savings(Avail. balance = $ 1548),Savings(Avail. balance = $ 1000),100,Monthly savings transfer
+true,Loan(Avail. balance = $ 780),Savings(Avail. balance = $ 1548),250,Rent payment
+false,Brokerage(Avail. balance = $ 197,.Savings(Avail. balance = $ 1548),75,Utility bill payment

@@ -1,0 +1,5 @@
+Test,Payee,Account,Amount,Date,Description
+true,sprint,Checking,120,2026-02-10,Mobile bill payment
+true,bofa,Savings,500,2026-02-15,Credit card payment
+true,apple,Checking,75,2026-02-18,Apple services subscription
+true,wellsfargo,Checking,300,2026-02-20,Loan installment
