@@ -105,7 +105,7 @@ export class MoneyTransferPage extends BasePage {
     try {
       await this.waitForElement(this.transferCompleteMessage, { timeout: 10000 });
       const isVisible = await this.transferCompleteMessage.isVisible();
-      
+
       if (isVisible) {
         this.log('Transfer completed successfully');
       }
@@ -113,7 +113,7 @@ export class MoneyTransferPage extends BasePage {
       return isVisible;
     } catch (error) {
       this.logError('Transfer verification failed', error);
-      
+
       // Check for error message
       const hasError = await this.elementExists(this.errorMessage);
       if (hasError) {

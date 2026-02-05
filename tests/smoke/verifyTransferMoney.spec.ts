@@ -8,7 +8,7 @@ import { TransferData } from '../../data-models/interfaces';
  * CSV-Driven Money Transfer Tests - Using Test Factory
  */
 TestFactory.createDataDrivenSuite<TransferData>(
-  'CSV-Driven Money Transfer Tests',
+  'Test:',
   'MakeATransferData',
   async function (this: { page: any; expect: any }, data: TransferData, index: number) {
     const navigationPage = new NavigationPage(this.page);

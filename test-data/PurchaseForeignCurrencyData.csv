@@ -1,0 +1,8 @@
+Test , TestId, TestTitle                          , MainMenu , SubMenu                  , Currency, Amount, CurrencyInUSDorOthers
+true , FC001 , Purchase Euro currency             , Pay Bills, Purchase Foreign Currency, EUR     ,    500, U.S. dollar (USD)
+false, FC002 , Purchase British Pound             , Pay Bills, Purchase Foreign Currency, GBP     ,    300, Selected currency
+true , FC003 , Purchase Japanese Yen              , Pay Bills, Purchase Foreign Currency, JPY     ,  10000, Selected currency
+false, FC004 , Purchase with invalid currency code, Pay Bills, Purchase Foreign Currency, ABC     ,    200, U.S. dollar (USD)
+false, FC011 , Invalid empty currency test        , Pay Bills, Purchase Foreign Currency,         ,    200, Empty currency validation
+false, FC012 , Invalid zero amount test           , Pay Bills, Purchase Foreign Currency, EUR     ,      0, Zero amount validation
+

@@ -32,11 +32,8 @@ export class CsvReader {
 
       return parsedData;
     } catch (error) {
-      throw new Error(
-        `Error reading CSV file at ${filePath}: ${
-          error instanceof Error ? error.message : String(error)
-        }`
-      );
+      console.error(`Error reading CSV file at ${absolutePath}:`, error);
+      throw error;
     }
   }
 

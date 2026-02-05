@@ -73,7 +73,7 @@ export class DataStore {
    * Get file path with proper extension handling
    */
   private static getFilePath(fileName: string): string {
-    const hasExtension = fileName.endsWith('.csv');
+    const hasExtension = path.extname(fileName).toLowerCase() === '.csv';
     const fullFileName = hasExtension ? fileName : `${fileName}.csv`;
     return path.join(this.DATA_DIR, fullFileName);
   }

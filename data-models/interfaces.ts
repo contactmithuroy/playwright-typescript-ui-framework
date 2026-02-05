@@ -24,11 +24,25 @@ export interface TransferData extends TestDataRow {
 }
 
 export interface PayBillsData extends TestDataRow {
+  TestId: string;
+  TestTitle: string;
+  MainMenu: string;
+  SubMenu?: string;
   Payee: string;
   Account: string;
   Amount: string;
   Date: string;
   Description: string;
+}
+
+export interface PurchaseForeignCurrencyData extends TestDataRow {
+  TestId: string;
+  TestTitle: string;
+  MainMenu: string;
+  SubMenu?: string;
+  Currency: string;   
+  Amount: string;
+  CurrencyInUSDorOthers: string;
 }
 
 /**
