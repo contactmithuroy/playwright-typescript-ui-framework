@@ -1,0 +1,82 @@
+name: Playwright Smoke Tests (Manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_branch:
+        description: 'Branch to run Playwright tests'
+        required: true
+        default: 'playwright-typescript-ddd-ui-structure-version1.2'
+      test_type:
+        description: 'Test type'
+        required: true
+        default: 'smoke'
+        type: choice
+        options:
+          - smoke
+          - regression
+
+jobs:
+  playwright-tests:
+    name: Run Playwright Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    env:
+      CI: true
+      TEST_ENV: production
+      BASE_URL: http://zero.webappsecurity.com
+
+    steps:
+      # -------------------------------
+      # Checkout selected branch
+      # -------------------------------
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.target_branch }}
+
+      # -------------------------------
+      # Setup Node.js (LTS)
+      # -------------------------------
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      # -------------------------------
+      # Install dependencies
+      # -------------------------------
+      - name: Install dependencies
+        run: npm ci
+
+      # -------------------------------
+      # Install Playwright browsers
+      # -------------------------------
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      # -------------------------------
+      # Run Playwright tests
+      # -------------------------------
+      - name: Run Playwright Tests
+        run: |
+          if [ "${{ github.event.inputs.test_type }}" = "smoke" ]; then
+            echo "Running SMOKE tests only"
+            npx playwright test tests/smoke --project=chromium
+          else
+            echo "Running FULL regression"
+            npx playwright test --project=chromium
+          fi
+
+      # -------------------------------
+      # Upload Playwright HTML report
+      # -------------------------------
+      - name: Upload Playwright Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-html-report
+          path: playwright-report/
+          retention-days: 14
