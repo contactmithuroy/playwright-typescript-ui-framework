@@ -3,7 +3,7 @@ import { DownloadUtil } from '../../utils/downloadUtil';
 import { BasePage } from '../Common/basePage';
 
 export class OnlineStatementsPage extends BasePage {
-
+    // Locators
     readonly accountSelect: Locator;
     readonly yearSelect: Locator;
 
@@ -17,14 +17,19 @@ export class OnlineStatementsPage extends BasePage {
         this.log(`Downloading statement for account: ${account}, year: ${year}`);
         
         try {
-
+            // Step 1: Select account first
             await this.selectAccount(account);
-            await this.selectYear(year);
             
-            //Wait for the page to stabilize and statements to load
+            // Step 2: Wait a bit for the page to update after account selection
             await this.page.waitForTimeout(1000);
             
-            //Get the specific download button for this year
+            // Step 3: Select year
+            await this.selectYear(year);
+            
+            // Step 4: Wait for the page to stabilize and statements to load
+            await this.page.waitForTimeout(1000);
+            
+            // Step 5: Get the specific download button for this year
             const downloadButton = await this.getDownloadButtonForYear(year);
             
             // Step 6: Download the file
@@ -55,6 +60,7 @@ export class OnlineStatementsPage extends BasePage {
         
         // Verify it exists
         await statementLink.waitFor({ state: 'visible', timeout: 5000 });
+        
         this.log(`Found statement link for year ${year}`);
         
         return statementLink;

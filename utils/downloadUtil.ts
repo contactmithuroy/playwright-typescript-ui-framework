@@ -32,10 +32,10 @@ export class DownloadUtil {
 
     const fileName = download.suggestedFilename();
     const filePath = path.join(this.DOWNLOAD_DIR, fileName);
-    
+
     // Save the file
     await download.saveAs(filePath);
-    
+
     // Verify file was actually saved
     if (!fs.existsSync(filePath)) {
       throw new Error(`File was not saved to ${filePath}`);
@@ -61,12 +61,12 @@ export class DownloadUtil {
    */
   static clearDownloads(): void {
     if (!fs.existsSync(this.DOWNLOAD_DIR)) return;
-    
+
     const files = fs.readdirSync(this.DOWNLOAD_DIR);
     files.forEach(file => {
       fs.unlinkSync(path.join(this.DOWNLOAD_DIR, file));
     });
-    
+
     console.log(`Cleared ${files.length} file(s) from downloads directory`);
   }
 
