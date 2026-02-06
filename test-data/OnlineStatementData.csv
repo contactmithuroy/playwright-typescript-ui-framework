@@ -1,0 +1,6 @@
+Test,TestId,TestTitle,MainMenu,SubMenu,Account,Year
+false,OS001,Download Savings 2012 Statement,Online Statements,,Savings,2012
+true,OS002,Download Checking 2012 Statement,Online Statements,,Checking,2009
+false,OS003,Download Loan 2011 Statement,Online Statements,,Loan,2011
+false,OS004,Invalid Year Selection,Online Statements,,Checking,
+
