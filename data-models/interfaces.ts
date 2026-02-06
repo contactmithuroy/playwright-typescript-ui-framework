@@ -45,6 +45,15 @@ export interface PurchaseForeignCurrencyData extends TestDataRow {
   CurrencyInUSDorOthers: string;
 }
 
+export interface OnlineStatementData extends TestDataRow {
+  TestId: string;
+  TestTitle: string;
+  MainMenu: string; 
+  SubMenu?: string;
+  Account: string;
+  Year: string;
+}
+
 /**
  * Test execution metadata
  */
