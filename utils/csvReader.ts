@@ -17,7 +17,7 @@ export class CsvReader {
     if (useCache && this.cache.has(absolutePath)) {
       return this.cache.get(absolutePath) as T[];
     }
-
+  console.log('[CSV LOAD]', absolutePath);
     try {
       if (!fs.existsSync(absolutePath)) {
         throw new Error(`CSV file not found: ${absolutePath}`);
