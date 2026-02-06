@@ -12,6 +12,9 @@
     "test:login": "playwright test tests/smoke/verifyLogin.spec.ts",
     "test:transfer": "playwright test tests/smoke/verifyTransferMoney.spec.ts",
     "test:account": "playwright test tests/smoke/verifyAccountSummary.spec.ts",
+    "test:statements": "playwright test tests/smoke/verifyOnlineStatements.spec.ts",
+    "test:purchaseForeignCurrency": "playwright test tests/smoke/verifyPurchaseForeignCurrency.spec.ts",
+    "test:payBills": "playwright test tests/smoke/verifyPayBills.spec.ts",
     "test:chrome": "BROWSERS=chromium playwright test",
     "test:firefox": "BROWSERS=firefox playwright test",
     "test:webkit": "BROWSERS=webkit playwright test",
@@ -39,7 +42,10 @@
     "pretest": "npm run clean",
     "posttest": "npm run report",
     "ci": "npm run test -- --reporter=html,junit",
-    "ci:smoke": "npm run test:smoke -- --reporter=html,junit"
+    "ci:smoke": "npm run test:smoke -- --reporter=html,junit",
+    "test:allure": "cross-env USE_ALLURE=true playwright test",
+    "allure:generate": "allure generate allure-results -o allure-report --clean",
+    "allure:open": "allure open allure-report"
   },
   "keywords": [
     "playwright",
